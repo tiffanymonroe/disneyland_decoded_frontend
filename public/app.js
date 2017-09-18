@@ -47,4 +47,36 @@ app.controller('mainController', ['$http', function($http){
   }
   ////////////////////////////////////////////////
 
+  this.getLands = function(){
+    $http({
+      url: this.url + '/lands',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.lands = res.data;
+    })
+  }
+  this.getLands();
+
+  this.getAttractions = function(){
+    $http({
+      url: this.url + '/attractions',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.attractions = res.data;
+    })
+  }
+  this.getAttractions();
+
+  this.getDining = function(){
+    $http({
+      url: this.url + '/dinings',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.dining = res.data;
+    })
+  }
+  this.getDining();
 }]); //end of mainController
