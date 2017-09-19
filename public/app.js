@@ -6,9 +6,14 @@ app.controller('mainController', ['$http', function($http){
 
   const controller = this;
   this.url = 'http://localhost:3000';
+
   this.user = {};
+  this.users = {};
+  this.userPass = {};
+  this.token = {};
   this.loginModal = false;
   this.registerModal = false;
+  this.loggedin = false;
 
   this.toggleLogin = function(){
     controller.loginModal = !controller.loginModal;
@@ -24,6 +29,18 @@ app.controller('mainController', ['$http', function($http){
     }
   }
 
+  //New Route
+  this.createUser = function(userPass){
+    $http({
+      url: this.url + '/users',
+      method: 'post',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(function(res){
+      console.log(res);
+      controller.user = res.data.user;
+    })
+  }
+
   //  User Authentication  //
   this.login = function(userPass){
     console.log(userPass);
@@ -34,6 +51,7 @@ app.controller('mainController', ['$http', function($http){
       data: {user: {username: userPass.username, password: userPass.password}},
     }).then(function(res){
       controller.user = res.data.user;
+      controller.loggedin = true;
       localStorage.setItem('token', JSON.stringify(res.data.token));
     }.bind(this));
   }
@@ -63,17 +81,7 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   }
 
-  //New Route
-  this.createUser = function(userPass){
-    $http({
-      url: this.url + '/users',
-      method: 'post',
-      data: {user: {username: userPass.username, password: userPass.password}}
-    }).then(function(res){
-      console.log(res);
-      controller.user = res.data.user;
-    })
-  }
+
 
 
   ////////////////////////////////////////////////
