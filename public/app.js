@@ -6,7 +6,11 @@ app.controller('mainController', ['$http', function($http){
 
   const controller = this;
   this.url = 'http://localhost:3000';
+
   this.user = {};
+  this.users = {};
+  this.userPass = {};
+  this.token = {};
   this.loginModal = false;
   this.registerModal = false;
 
@@ -22,6 +26,18 @@ app.controller('mainController', ['$http', function($http){
     if(controller.loginModal === true){
       controller.loginModal = false;
     }
+  }
+
+  //New Route
+  this.createUser = function(userPass){
+    $http({
+      url: this.url + '/users',
+      method: 'post',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(function(res){
+      console.log(res);
+      controller.user = res.data.user;
+    })
   }
 
   //  User Authentication  //
@@ -63,17 +79,7 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   }
 
-  //New Route
-  this.createUser = function(userPass){
-    $http({
-      url: this.url + '/users',
-      method: 'post',
-      data: {user: {username: userPass.username, password: userPass.password}}
-    }).then(function(res){
-      console.log(res);
-      controller.user = res.data.user;
-    })
-  }
+
 
 
   ////////////////////////////////////////////////
