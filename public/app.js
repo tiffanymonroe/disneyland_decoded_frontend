@@ -24,6 +24,8 @@ app.controller('mainController', ['$http', function($http){
   }
 
 //can be any funciton for 'secret stuff'
+
+//Show Route
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -45,6 +47,20 @@ app.controller('mainController', ['$http', function($http){
     localStorage.clear('token');
     location.reload();
   }
+
+  //New Route
+  this.createUser = function(userPass){
+    $http({
+      url: this.url + '/users',
+      method: 'post',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(function(res){
+      console.log(res);
+      this.user = res.data.user;
+    })
+  }
+
+
   ////////////////////////////////////////////////
 
   this.getLands = function(){
