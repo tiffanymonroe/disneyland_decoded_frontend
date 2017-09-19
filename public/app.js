@@ -7,7 +7,22 @@ app.controller('mainController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000';
   this.user = {};
+  this.loginModal = false;
+  this.registerModal = false;
 
+  this.toggleLogin = function(){
+    controller.loginModal = !controller.loginModal;
+    if (controller.registerModal === true){
+      controller.registerModal = false;
+    }
+  }
+
+  this.toggleRegister = function(){
+    controller.registerModal = !controller.registerModal;
+    if(controller.loginModal === true){
+      controller.loginModal = false;
+    }
+  }
 
   //  User Authentication  //
   this.login = function(userPass){
@@ -24,6 +39,8 @@ app.controller('mainController', ['$http', function($http){
   }
 
 //can be any funciton for 'secret stuff'
+
+//Show Route
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -45,6 +62,52 @@ app.controller('mainController', ['$http', function($http){
     localStorage.clear('token');
     location.reload();
   }
+
+  //New Route
+  this.createUser = function(userPass){
+    $http({
+      url: this.url + '/users',
+      method: 'post',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(function(res){
+      console.log(res);
+      controller.user = res.data.user;
+    })
+  }
+
+
   ////////////////////////////////////////////////
 
+  this.getLands = function(){
+    $http({
+      url: this.url + '/lands',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.lands = res.data;
+    })
+  }
+  this.getLands();
+
+  this.getAttractions = function(){
+    $http({
+      url: this.url + '/attractions',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.attractions = res.data;
+    })
+  }
+  this.getAttractions();
+
+  this.getDining = function(){
+    $http({
+      url: this.url + '/dinings',
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.dining = res.data;
+    })
+  }
+  this.getDining();
 }]); //end of mainController

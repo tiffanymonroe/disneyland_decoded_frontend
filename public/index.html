@@ -24,21 +24,47 @@
   <body ng-controller="mainController as ctrl">
 
       <nav class="navbar navbar-default navbar-static-top">
-        <ul class="nav navbar-nav">
-          <li></li>
-        </ul>
+        <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleLogin()">Login</button>
+
+        <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleRegister()">Register</button>
         <p class="navbar-text">Signed in as {{ctrl.userPass.username}} </p>
+
+        <div class="col-xs-3" ng-show="ctrl.loginModal">
+          Login
+          <form class="form-group" ng-submit="ctrl.login(userPass)">
+            Username: <input type="text" class="form-control" ng-model="userPass.username"/><br>
+            Password: <input type="password" class="form-control"  ng-model="userPass.password"/><br>
+            <input type="submit" class="btn btn-default"/>
+          </form>
+        </div>
+
+        <div class="col-xs-3" ng-show="ctrl.registerModal">
+          Register
+          <form class="form-group" ng-submit="ctrl.createUser(userPass)">
+            Username: <input type="text" class="form-control" ng-model="userPass.username"/><br>
+            Password: <input type="password" class="form-control" ng-model="userPass.password"/><br>
+            <input type="submit" class="btn btn-default"/>
+          </form>
+        </div>
       </nav>
 
     <div class="container">
       <main>
-        <form ng-submit="ctrl.login(userPass)">
-          Username: <input type="text" ng-model="userPass.username"/><br>
-          Password: <input type="password" ng-model="userPass.password"/><br>
-          <input type="submit"/>
-        </form>
+        <h1>Disneyland Decoded</h1>
+        <ul class="nav navbar-nav">
+          <li class="btn btn-default navbar-btn" ng-repeat="land in ctrl.lands">{{land.name}}</li>
+        </ul>
 
-      
+
+
+        <!-- <div ng-repeat="attraction in ctrl.attractions">
+          Attraction: {{attraction.name}}
+          Land ID: {{attraction.land_id}}
+        </div>
+        <div ng-repeat="dining in ctrl.dining">
+          Restaurant: {{dining.name}}
+          Land ID: {{dining.land_id}}
+        </div> -->
       </main>
 
       <footer>
