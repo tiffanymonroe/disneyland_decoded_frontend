@@ -24,11 +24,15 @@
   <body ng-controller="mainController as ctrl">
 
       <nav class="navbar navbar-default navbar-static-top">
-
+        <!-- Login Button -->
           <p class="navbar-text" ng-click="ctrl.toggleLogin()"><span ng-if="!ctrl.loggedin" class="glyphicon glyphicon-log-in"></span></p>
+
+        <!-- only show when logged in   -->
         <div ng-if="ctrl.loggedin">
-          <p class="navbar-text">Signed in as {{ctrl.userPass.username}} <br><span class="glyphicon glyphicon-log-out"><span></p>
+          <p class="navbar-text">Signed in as {{ctrl.userPass.username}} <br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
         </div>
+
+        <!-- only show when not logged in  -->
         <div ng-if="!ctrl.loggedin">
           <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleRegister()">Register</button>
         </div>
