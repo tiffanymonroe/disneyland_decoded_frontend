@@ -7,7 +7,22 @@ app.controller('mainController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000';
   this.user = {};
+  this.loginModal = false;
+  this.registerModal = false;
 
+  this.toggleLogin = function(){
+    controller.loginModal = !controller.loginModal;
+    if (controller.registerModal === true){
+      controller.registerModal = false;
+    }
+  }
+
+  this.toggleRegister = function(){
+    controller.registerModal = !controller.registerModal;
+    if(controller.loginModal === true){
+      controller.loginModal = false;
+    }
+  }
 
   //  User Authentication  //
   this.login = function(userPass){
@@ -56,7 +71,7 @@ app.controller('mainController', ['$http', function($http){
       data: {user: {username: userPass.username, password: userPass.password}}
     }).then(function(res){
       console.log(res);
-      this.user = res.data.user;
+      controller.user = res.data.user;
     })
   }
 
