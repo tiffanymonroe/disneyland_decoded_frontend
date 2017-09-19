@@ -13,6 +13,7 @@ app.controller('mainController', ['$http', function($http){
   this.token = {};
   this.loginModal = false;
   this.registerModal = false;
+  this.loggedin = false;
 
   this.toggleLogin = function(){
     controller.loginModal = !controller.loginModal;
@@ -50,6 +51,7 @@ app.controller('mainController', ['$http', function($http){
       data: {user: {username: userPass.username, password: userPass.password}},
     }).then(function(res){
       controller.user = res.data.user;
+      controller.loggedin = true;
       localStorage.setItem('token', JSON.stringify(res.data.token));
     }.bind(this));
   }

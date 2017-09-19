@@ -24,12 +24,17 @@
   <body ng-controller="mainController as ctrl">
 
       <nav class="navbar navbar-default navbar-static-top">
-        <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleLogin()">Login</button>
 
-        <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleRegister()">Register</button>
-        <p class="navbar-text">Signed in as {{ctrl.userPass.username}} </p>
+          <p class="navbar-text" ng-click="ctrl.toggleLogin()"><span ng-if="!ctrl.loggedin" class="glyphicon glyphicon-log-in"></span></p>
+        <div ng-if="ctrl.loggedin">
+          <p class="navbar-text">Signed in as {{ctrl.userPass.username}} <br><span class="glyphicon glyphicon-log-out"><span></p>
+        </div>
+        <div ng-if="!ctrl.loggedin">
+          <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleRegister()">Register</button>
+        </div>
 
-        <div class="col-xs-3" ng-show="ctrl.loginModal">
+
+        <div class="col-xs-3" ng-if="!ctrl.loggedin" ng-show="ctrl.loginModal">
           Login
           <form class="form-inline" ng-submit="ctrl.login(userPass)">
             Username: <input type="text" class="form-control" ng-model="userPass.username"/>
