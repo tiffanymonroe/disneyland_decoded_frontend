@@ -118,4 +118,8 @@ app.controller('mainController', ['$http', function($http){
     })
   }
   this.getDining();
+
+  this.modalText = function(id){
+    id = land_id;
+  }
 }]); //end of mainController
