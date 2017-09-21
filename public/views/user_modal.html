@@ -1,0 +1,35 @@
+<!-- Small modal -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+
+      <!-- modals  -->
+
+      <div ng-if="!ctrl.loggedin" ng-show="ctrl.loginModal">
+         <h3 class="modal-header">Log In</h3>
+        <form class="user-modal form-group" ng-submit="ctrl.login(userPass)">
+          Username: <input type="text" class="form-control" ng-model="userPass.username"/>
+          Password: <input type="password" class="form-control"  ng-model="userPass.password"/>
+          <br>
+          <input type="submit" class="btn btn-default"/>
+        </form>
+      </div>
+
+      <div ng-show="ctrl.registerModal">
+        <h3 class="modal-header">Register</h3>
+        <form class="user-modal form-group" ng-submit="ctrl.createUser(userPass)">
+          Username: <input type="text" class="form-control" ng-model="userPass.username"/>
+          Password: <input type="password" class="form-control" ng-model="userPass.password"/>
+          <br>
+          <input type="submit" class="btn btn-default"/>
+        </form>
+      </div>
+
+      <!-- end modals -->
+
+
+    </div>
+  </div>
+</div>

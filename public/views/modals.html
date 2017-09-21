@@ -1,0 +1,22 @@
+<div class="modal fade bs-example-modal-lg" ng-repeat="land in ctrl.lands" id="{{land.id}}Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+        {{land.name}} </h3>
+      </div>
+      <div class="modal-body">
+        <ul><h4>Attractions</h4>
+          <li ng-repeat="attractions in ctrl.attractions">{{attractions.name}}</li>
+        </ul>
+        <ul><h4>Disney Dining</h4>
+          <li ng-repeat="dining in ctrl.dining">{{dining.name}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <img class="mickey-icon" data-dismiss="modal" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+      </div>
+    </div>
+  </div>
+</div>
