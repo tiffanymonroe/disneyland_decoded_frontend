@@ -1,80 +1,72 @@
 <!DOCTYPE html>
 <html ng-app="disney">
-  <head>
-    <meta charset="utf-8">
-    <title>Disneyland Decoded</title>
-    <!-- bootsrap -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <title>Disneyland Decoded</title>
+  <!-- bootsrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Acme|Poppins" rel="stylesheet">
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
 
-    <!-- css -->
-      <link rel="stylesheet" href="style.css">
+  <!-- angular -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js">
+  </script>
 
-    <!-- angular -->
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js">
-      </script>
-
-    <!-- javascript -->
-      <script src="app.js"></script>
-  </head>
-  <body ng-controller="mainController as ctrl">
-
-      <nav class="navbar navbar-default navbar-static-top">
-
-          <p class="navbar-text" ng-click="ctrl.toggleLogin()"><span ng-if="!ctrl.loggedin" class="glyphicon glyphicon-log-in"></span></p>
-        <div ng-if="ctrl.loggedin">
-          <p class="navbar-text">Signed in as {{ctrl.userPass.username}} <br><span class="glyphicon glyphicon-log-out"><span></p>
-        </div>
-        <div ng-if="!ctrl.loggedin">
-          <button class="btn btn-default navbar-btn" ng-click="ctrl.toggleRegister()">Register</button>
-        </div>
+  <!-- jquery -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 
 
-        <div class="col-xs-3" ng-if="!ctrl.loggedin" ng-show="ctrl.loginModal">
-          Login
-          <form class="form-inline" ng-submit="ctrl.login(userPass)">
-            Username: <input type="text" class="form-control" ng-model="userPass.username"/>
-            Password: <input type="password" class="form-control"  ng-model="userPass.password"/>
-            <input type="submit" class="btn btn-default"/>
-          </form>
-        </div>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <div class="col-xs-3" ng-show="ctrl.registerModal">
-          Register
-          <form class="form-inline" ng-submit="ctrl.createUser(userPass)">
-            Username: <input type="text" class="form-control" ng-model="userPass.username"/>
-            Password: <input type="password" class="form-control" ng-model="userPass.password"/>
-            <input type="submit" class="btn btn-default"/>
-          </form>
-        </div>
-      </nav>
+  <!-- javascript -->
+  <script src="app.js"></script>
+</head>
+<body ng-controller="mainController as ctrl">
+
+  <nav class="navbar navbar-default navbar-static-top">
+
+    <!-- Login Button -->
+    <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
+
+
+    <!-- only show when logged in   -->
+    <!-- Register Button  -->
+    <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
+
+    <!-- logged in info -->
+    <div class="user" ng-if="ctrl.loggedin">
+      <p class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
+      </div>
+
+    <!-- Lands -->
+    <span ng-repeat="land in ctrl.lands">
+      <a class="navbar navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
+    </span>
+
+    </nav>
+
+    <img class="map img-responsive" src="/assets/disneyland_map.jpg"/>
+
+
 
     <div class="container">
       <main>
-        <h1>Disneyland Decoded</h1>
-        <ul class="nav navbar-nav">
-          <li class="btn btn-default navbar-btn" ng-repeat="land in ctrl.lands">{{land.name}}</li>
-        </ul>
 
+    <!-- Lands -->
+      <section ng-include="'views/modals.html'"></section>
+      <section ng-include="'views/user_modal.html'"></section>
+    </main>
 
+    <footer>
+    </footer>
 
-        <!-- <div ng-repeat="attraction in ctrl.attractions">
-          Attraction: {{attraction.name}}
-          Land ID: {{attraction.land_id}}
-        </div>
-        <div ng-repeat="dining in ctrl.dining">
-          Restaurant: {{dining.name}}
-          Land ID: {{dining.land_id}}
-        </div> -->
-      </main>
-
-      <footer>
-      </footer>
-
-    </div>
-  </body>
+</div>
+</body>
 </html>

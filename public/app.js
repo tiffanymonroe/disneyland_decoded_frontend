@@ -103,7 +103,7 @@ app.controller('mainController', ['$http', function($http){
       method: 'get'
     }).then(function(res){
       console.log(res);
-      controller.attractions = res.data;
+      controller.attractions = res.data
     })
   }
   this.getAttractions();
@@ -118,4 +118,10 @@ app.controller('mainController', ['$http', function($http){
     })
   }
   this.getDining();
+
+  this.getId = function(land_id){
+    if(controller.lands.id === land_id){
+      return true;
+    }
+  }
 }]); //end of mainController

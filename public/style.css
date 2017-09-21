@@ -1,7 +1,33 @@
+@font-face {
+  font-family: 'Pontiac';
+  src: url('assets/pontiac_regular.otf');
+}
+
 body {
-  /*font-family: 'Poppins', sans-serif;*/
+  font-family: 'Pontiac', Fallback, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  /*font-family: 'Acme', sans-serif;*/
+
+}
+
+.map {
+  z-index: -1;
+  position: absolute;
+}
+
+.mickey-icon {
+  width: 1em;
+  height: auto;
+}
+
+.user-modal {
+  width: 90%;
+  margin: auto;
+  padding: 1em;
+}
+
+.modal-header {
+  text-align: center;
+  padding: 1em;
 }
