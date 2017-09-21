@@ -119,9 +119,5 @@ app.controller('mainController', ['$http', function($http){
   }
   this.getDining();
 
-  this.getId = function(land_id){
-    if(controller.lands.id === land_id){
-      return true;
-    }
-  }
+  
 }]); //end of mainController
