@@ -33,6 +33,7 @@
   <nav class="navbar navbar-default navbar-static-top">
 
     <!-- Login Button -->
+
     <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
 
 
@@ -42,16 +43,14 @@
 
     <!-- logged in info -->
     <div class="user" ng-if="ctrl.loggedin">
-      <section class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br>
-        <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span>
+      <h5 ng-click="ctrl.toggleAccount()" class="navbar-text">Welcome, {{ctrl.userPass.username}}!<br>
+        <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
         </section>
-        <section>
-          <span ng-click="ctrl.toggleAccount()" class="glyphicon glyphicon-user"></span>
-        </section>
-      </div>
+
+    </div>
 
     <!-- Lands -->
-    <span ng-repeat="land in ctrl.lands">
+    <span class="nav-lands" ng-repeat="land in ctrl.lands">
       <a class="navbar navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
     </span>
 
