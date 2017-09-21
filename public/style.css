@@ -1,5 +1,10 @@
-body {
+@font-face {
+  font-family: 'Pontiac';
+  src: url('assets/pontiac_regular.otf');
+}
 
+body {
+  font-family: 'Pontiac', Fallback, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {

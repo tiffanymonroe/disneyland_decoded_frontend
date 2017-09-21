@@ -8,9 +8,6 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-  <!-- fonts -->
-
-
   <!-- css -->
   <link rel="stylesheet" href="style.css">
 
@@ -44,13 +41,13 @@
     <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
 
     <!-- logged in info -->
-    <div ng-if="ctrl.loggedin">
-      <p class="navbar-text">Signed in as {{ctrl.userPass.username}} <br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
+    <div class="user" ng-if="ctrl.loggedin">
+      <p class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
       </div>
 
     <!-- Lands -->
     <span ng-repeat="land in ctrl.lands">
-      <a class="navbar navbar-text" data-toggle="modal" data-target="#myModal">{{land.name}}</a>
+      <a class="navbar navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
     </span>
 
     </nav>
