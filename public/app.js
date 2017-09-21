@@ -7,6 +7,8 @@ app.controller('mainController', ['$http', function($http){
   const controller = this;
   this.url = 'http://localhost:3000' || 'http://disneyland-decoded-api.herokuapp.com/';
 
+
+  //user info
   this.user = {};
   this.users = {};
   this.userPass = {};
@@ -14,6 +16,10 @@ app.controller('mainController', ['$http', function($http){
   this.loginModal = false;
   this.registerModal = false;
   this.loggedin = false;
+  this.account = false;
+
+  this.map = true;
+
 
   this.toggleLogin = function(){
     controller.loginModal = !controller.loginModal;
@@ -93,9 +99,10 @@ app.controller('mainController', ['$http', function($http){
     }).then(function(res){
       console.log(res);
       controller.lands = res.data;
+
     })
   }
-  this.getLands();
+
 
   this.getAttractions = function(){
     $http({
@@ -106,7 +113,7 @@ app.controller('mainController', ['$http', function($http){
       controller.attractions = res.data
     })
   }
-  this.getAttractions();
+
 
   this.getDining = function(){
     $http({
@@ -117,7 +124,20 @@ app.controller('mainController', ['$http', function($http){
       controller.dining = res.data;
     })
   }
+
+  this.toggleAccount = function(){
+    controller.account = !controller.account;
+
+    controller.map = !controller.map;
+
+  }
+
+
+  //functions to run on page load
+  this.getLands();
+  this.getAttractions();
   this.getDining();
+
 
 
 }]); //end of mainController

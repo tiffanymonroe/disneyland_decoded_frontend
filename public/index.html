@@ -42,7 +42,12 @@
 
     <!-- logged in info -->
     <div class="user" ng-if="ctrl.loggedin">
-      <p class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
+      <section class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br>
+        <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span>
+        </section>
+        <section>
+          <span ng-click="ctrl.toggleAccount()" class="glyphicon glyphicon-user"></span>
+        </section>
       </div>
 
     <!-- Lands -->
@@ -52,17 +57,19 @@
 
     </nav>
 
-    <img class="map img-responsive" src="/assets/disneyland_map.jpg"/>
+    <img ng-show="ctrl.map" class="map img-responsive" src="/assets/disneyland_map.jpg"/>
 
 
 
     <div class="container">
       <main>
 
-    <!-- Lands -->
-      <section ng-include="'views/modals.html'"></section>
-      <section ng-include="'views/user_modal.html'"></section>
-    </main>
+      <!-- Lands -->
+        <section ng-include="'views/modals.html'"></section>
+        <section ng-include="'views/user_modal.html'"></section>
+        <section ng-include="'views/account.html'"></section>
+
+      </main>
 
     <footer>
     </footer>
