@@ -5,7 +5,7 @@ const app = angular.module("disney", []);
 app.controller('mainController', ['$http', function($http){
 
   const controller = this;
-  this.url = 'http://localhost:3000' || 'http://disneyland-decoded-api.herokuapp.com/';
+  this.url = 'http://localhost:3000' || 'http://disneyland-decoded-api.herokuapp.com';
 
 
   //user info
@@ -17,8 +17,12 @@ app.controller('mainController', ['$http', function($http){
   this.registerModal = false;
   this.loggedin = false;
   this.account = false;
+  this.updateUser = {};
 
   this.map = true;
+
+  this.land = {};
+
 
 
   this.toggleLogin = function(){
@@ -87,7 +91,31 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   }
 
+  //Update Route
+  this.updateUser = function(username, password){
+    $http({
+      method: 'patch',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      url: this.url + '/users/' + this.user.id,
+      data: {user: {username: username, password: password}}
+    }).then(function(res){
+      console.log(res);
+      console.log(res.data);
+      this.user = res.data;
+    }.bind(this));
+  }
 
+  //Delete Route
+  this.deleteUser = function(userPass){
+    $http({
+      method: 'delete',
+      url: this.url + '/users/' + this.user.id
+    }).then(function(res){
+      this.logout();
+    }.bind(this));
+  }
 
 
   ////////////////////////////////////////////////
@@ -97,46 +125,57 @@ app.controller('mainController', ['$http', function($http){
       url: this.url + '/lands',
       method: 'get'
     }).then(function(res){
+      console.log('==================================');
       console.log(res);
+      console.log('this is res.data', res.data);
       controller.lands = res.data;
 
     })
   }
 
-
-  this.getAttractions = function(){
+  this.getLand = function(id){
     $http({
-      url: this.url + '/attractions',
+      url: this.url + "/lands/" + id,
+      method: 'get'
+    }).then(function(res){
+      console.log(res.data);
+    })
+  }
+
+  this.getAttractions = function(id){
+    $http({
+      url: this.url + "/lands/" + id,
       method: 'get'
     }).then(function(res){
       console.log(res);
-      controller.attractions = res.data
+      controller.attractions = res.data.attractions;
+
+      console.log('attractions = ', controller.attractions);
     })
   }
 
 
-  this.getDining = function(){
+  this.getDining = function(id){
     $http({
-      url: this.url + '/dinings',
+      url: this.url + "/lands/" + id,
       method: 'get'
     }).then(function(res){
-      console.log(res);
-      controller.dining = res.data;
+      console.log(res.data);
+      controller.dining = res.data.dinings;
     })
   }
 
   this.toggleAccount = function(){
     controller.account = !controller.account;
-
     controller.map = !controller.map;
-
   }
 
 
   //functions to run on page load
   this.getLands();
-  this.getAttractions();
-  this.getDining();
+  // this.getLand();
+  // this.getAttractions();
+  // this.getDining();
 
 
 
