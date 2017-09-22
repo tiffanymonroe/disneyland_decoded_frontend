@@ -33,6 +33,7 @@
   <nav class="navbar navbar-default navbar-static-top">
 
     <!-- Login Button -->
+
     <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
 
 
@@ -42,27 +43,33 @@
 
     <!-- logged in info -->
     <div class="user" ng-if="ctrl.loggedin">
-      <p class="navbar-text">Welcome,  {{ctrl.userPass.username}}!<br><span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><span></p>
-      </div>
+      <h5 class="navbar-text">Welcome, {{ctrl.userPass.username}}!<br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".account"><span class="glyphicon glyphicon-user"></span></button>
+        <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
+        </section>
+
+    </div>
 
     <!-- Lands -->
-    <span ng-repeat="land in ctrl.lands">
+    <span class="nav-lands" ng-repeat="land in ctrl.lands">
       <a class="navbar navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
     </span>
 
     </nav>
 
-    <img class="map img-responsive" src="/assets/disneyland_map.jpg"/>
+    <img ng-show="ctrl.map" class="map img-responsive" src="/assets/disneyland_map.jpg"/>
 
 
 
     <div class="container">
       <main>
 
-    <!-- Lands -->
-      <section ng-include="'views/modals.html'"></section>
-      <section ng-include="'views/user_modal.html'"></section>
-    </main>
+      <!-- Lands -->
+        <section ng-include="'views/modals.html'"></section>
+        <section ng-include="'views/user_modal.html'"></section>
+        <section ng-include="'views/account.html'"></section>
+
+      </main>
 
     <footer>
     </footer>

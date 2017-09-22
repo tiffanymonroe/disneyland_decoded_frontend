@@ -5,8 +5,10 @@ const app = angular.module("disney", []);
 app.controller('mainController', ['$http', function($http){
 
   const controller = this;
-  this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000' || 'http://disneyland-decoded-api.herokuapp.com';
 
+
+  //user info
   this.user = {};
   this.users = {};
   this.userPass = {};
@@ -14,6 +16,14 @@ app.controller('mainController', ['$http', function($http){
   this.loginModal = false;
   this.registerModal = false;
   this.loggedin = false;
+  this.account = false;
+  this.updateUser = {};
+
+  this.map = true;
+
+  this.land = {};
+
+
 
   this.toggleLogin = function(){
     controller.loginModal = !controller.loginModal;
@@ -81,7 +91,31 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   }
 
+  //Update Route
+  this.updateUser = function(username, password){
+    $http({
+      method: 'patch',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      url: this.url + '/users/' + this.user.id,
+      data: {user: {username: username, password: password}}
+    }).then(function(res){
+      console.log(res);
+      console.log(res.data);
+      this.user = res.data;
+    }.bind(this));
+  }
 
+  //Delete Route
+  this.deleteUser = function(userPass){
+    $http({
+      method: 'delete',
+      url: this.url + '/users/' + this.user.id
+    }).then(function(res){
+      this.logout();
+    }.bind(this));
+  }
 
 
   ////////////////////////////////////////////////
@@ -91,33 +125,58 @@ app.controller('mainController', ['$http', function($http){
       url: this.url + '/lands',
       method: 'get'
     }).then(function(res){
+      console.log('==================================');
       console.log(res);
+      console.log('this is res.data', res.data);
       controller.lands = res.data;
+
     })
   }
+
+  this.getLand = function(id){
+    $http({
+      url: this.url + "/lands/" + id,
+      method: 'get'
+    }).then(function(res){
+      console.log(res.data);
+    })
+  }
+
+  this.getAttractions = function(id){
+    $http({
+      url: this.url + "/lands/" + id,
+      method: 'get'
+    }).then(function(res){
+      console.log(res);
+      controller.attractions = res.data.attractions;
+
+      console.log('attractions = ', controller.attractions);
+    })
+  }
+
+
+  this.getDining = function(id){
+    $http({
+      url: this.url + "/lands/" + id,
+      method: 'get'
+    }).then(function(res){
+      console.log(res.data);
+      controller.dining = res.data.dinings;
+    })
+  }
+
+  this.toggleAccount = function(){
+    controller.account = !controller.account;
+    controller.map = !controller.map;
+  }
+
+
+  //functions to run on page load
   this.getLands();
+  // this.getLand();
+  // this.getAttractions();
+  // this.getDining();
 
-  this.getAttractions = function(){
-    $http({
-      url: this.url + '/attractions',
-      method: 'get'
-    }).then(function(res){
-      console.log(res);
-      controller.attractions = res.data
-    })
-  }
-  this.getAttractions();
 
-  this.getDining = function(){
-    $http({
-      url: this.url + '/dinings',
-      method: 'get'
-    }).then(function(res){
-      console.log(res);
-      controller.dining = res.data;
-    })
-  }
-  this.getDining();
 
-  
 }]); //end of mainController

@@ -17,9 +17,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mickey-icon {
-  width: 1em;
+  width: 33px;
   height: auto;
+  padding-right: 10px;
 }
+
+
+
 
 .user-modal {
   width: 90%;
@@ -30,4 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 .modal-header {
   text-align: center;
   padding: 1em;
+}
+
+li {
+  list-style: none;
 }
