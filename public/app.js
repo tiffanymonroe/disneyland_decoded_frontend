@@ -65,6 +65,7 @@ app.controller('mainController', ['$http', function($http){
       }
     }).then(function(res){
       console.log(res);
+      console.log(res.data);
       if (res.data.status == 401){
         controller.error = "Cast Members Only";
       } else {
@@ -123,10 +124,15 @@ app.controller('mainController', ['$http', function($http){
       url: this.url + '/users/login',
       data: {user: {username: userPass.username, password: userPass.password}},
     }).then(function(res){
-      controller.user = res.data.user;
-      console.log('The user is: ', controller.user);
-      controller.loggedin = true;
+      this.user = res.data.user;
       localStorage.setItem('token', JSON.stringify(res.data.token));
+      if (this.user === undefined){
+        this.loggedin = false;
+      } else {
+        this.loggedin = true;
+      }
+      console.log('The user is: ', this.user);
+      console.log('user logged in? ', this.loggedin);
     }.bind(this));
   }
 
@@ -200,7 +206,7 @@ app.controller('mainController', ['$http', function($http){
     $http({
       url: this.url + "/users/" + this.user.id + "/posts",
       method: 'post',
-      data: { post: { title: this.post.title, content: this.post.content, land_id: this.post.land_id, user_id: this.user.id}}
+      data: { post: { title: this.post.title, content: this.post.content}}
     }).then(function(res){
       console.log('create post: ', res);
     })

@@ -8,17 +8,23 @@
       <div class="modal-body">
 
         <h4>Add some magic.</h4>
-        <form ng-submit="ctrl.createPost()">
+        <form ng-submit="ctrl.createPost(land.id)">
           Title: <input type="text" ng-model="ctrl.post.title">
           Tips, Tricks, and Advice for Visitors: <input type="textarea" ng-model="ctrl.post.content">
           <select name="select">
-            <option ng-model="ctrl.land.id" value="{{land.id}}" ng-repeat="land in ctrl.lands">{{land.name}}</option>
+            <option ng-repeat="land in ctrl.lands" ng-model="ctrl.post.land_id" value="{{land.id}}">{{land.name}}</option>
           </select>
           <input type="submit">
         </form>
 
         <h4>All of your posts.</h4>
         <button ng-click="ctrl.getPosts()"  class="btn btn-default">Show</button>
+        <div ng-repeat="post in ctrl.posts">
+          <h5>{{post.title}}</h5>
+          <p>{{post.content}}</p>
+
+
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
