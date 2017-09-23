@@ -212,16 +212,6 @@ app.controller('mainController', ['$http', function($http){
     })
   }
 
-  //show route
-
-  this.getPost = function(){
-    $http({
-      url: this.url + "/users/" + this.user.id + "/posts",
-      method: 'get'
-    }).then(function(res){
-      console.log('get post: ', res);
-    })
-  }
 
   // index route
  this.getPosts = function(){
@@ -234,12 +224,24 @@ app.controller('mainController', ['$http', function($http){
    })
  }
 
+ //show route
+
+ this.getPost = function(){
+   $http({
+     url: this.url + "/users/" + this.user.id + "/posts/" + this.posts.id,
+     method: 'get'
+   }).then(function(res){
+     console.log('get post: ', res);
+     controller.post = res.data;
+   })
+ }
+
   // edit route
   this.editPost = function(title, content, id){
     $http({
-      method: 'patch',
-      url: this.url + '/users/' + this.user.id + '/posts/' + this.post.id,
-      data: { post: { title: title, content: content}}
+      method: 'put',
+      url: this.url + '/users/' + this.user.id + '/posts/' + id,
+      data: { post: { title: title, content: content, id: id} }
     }).then(function(res){
       console.log(res);
       controller.editPost = res.data;

@@ -23,9 +23,9 @@
           <h5>{{post.title}}</h5>
           <p>{{post.content}}</p>
           <div ng-click="ctrl.getPost()">CLICK ME</div>
-          <form ng-submit="ctrl.editPost(post.id)">
-            Title: <input type="text" ng-model="ctrl.post.title" placeholder="post.title">
-            Tips, Tricks, and Advice for Visitors: <input type="textarea" ng-model="ctrl.post.content" placeholder="post.content">
+          <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
+            Title: <input type="text" ng-model="post.title" placeholder="{{post.title}}">
+            Tips, Tricks, and Advice for Visitors: <input type="textarea" ng-model="post.content" placeholder="{{post.content}}">
             <select name="select">
               <option ng-repeat="land in ctrl.lands" value="{{land.id}}">{{land.name}}</option>
             </select>
