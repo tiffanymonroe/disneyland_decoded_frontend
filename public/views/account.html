@@ -18,7 +18,7 @@
         </form>
 
         <h4>All of your posts.</h4>
-        <button ng-click="ctrl.getPosts()"  class="btn btn-default">Show</button>
+        <button ng-click="ctrl.getPosts()"  class="btn btn-info">Show</button>
         <div ng-repeat="post in ctrl.posts">
           <h5>{{post.title}}</h5>
           <p>{{post.content}}</p>
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
 
       </div>
     </div>

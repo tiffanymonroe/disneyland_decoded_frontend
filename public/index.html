@@ -32,27 +32,9 @@
 
   <nav class="navbar navbar-default navbar-static-top">
 
-    <!-- Login Button -->
-
-    <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
-
-
-    <!-- only show when logged in   -->
-    <!-- Register Button  -->
-    <a class="navbar navbar-text" data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
-
-    <!-- logged in info -->
-    <div class="user" ng-if="ctrl.loggedin">
-      <h5 class="navbar-text">Welcome, {{ctrl.userPass.username}}!<br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".account"><span class="glyphicon glyphicon-user"></span></button>
-        <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
-        </section>
-
-    </div>
-
     <!-- Lands -->
     <span class="nav-lands" ng-repeat="land in ctrl.lands">
-      <a class="navbar navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
+      <a class="navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
     </span>
 
     </nav>
@@ -63,7 +45,26 @@
 
     <div class="container">
       <main>
+        <div class="user navbar-right">
+        <!-- Login Button -->
 
+        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
+
+
+        <!-- only show when logged in   -->
+        <!-- Register Button  -->
+        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
+
+        <!-- logged in info -->
+        <div class="user" ng-if="ctrl.loggedin">
+          <h5>Welcome, {{ctrl.userPass.username}}!<br>
+            <section>
+            <span class="glyphicon glyphicon-user" data-toggle="modal" data-target=".account"></span>
+            <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
+            </section>
+
+        </div>
+      </div>
       <!-- Lands -->
         <section ng-include="'views/modals.html'"></section>
         <section ng-include="'views/user_modal.html'"></section>

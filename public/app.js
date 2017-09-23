@@ -144,6 +144,8 @@ app.controller('mainController', ['$http', function($http){
     localStorage.clear('token');
     location.reload();
   }
+
+  
   ////////////////////////////////////////////////
 
 
@@ -266,6 +268,7 @@ app.controller('mainController', ['$http', function($http){
     }).then(function(res){
       console.log(res);
     })
+    this.getPosts();
   }
 
 }]); //end of mainController
