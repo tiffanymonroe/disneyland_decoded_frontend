@@ -250,5 +250,13 @@ app.controller('mainController', ['$http', function($http){
   }
 
   // delete route
+  this.deletePost = function(id){
+    $http({
+      method: 'delete',
+      url: this.url + '/users/' + this.user.id + '/posts/' + id
+    }).then(function(res){
+      console.log(res);
+    })
+  }
 
 }]); //end of mainController
