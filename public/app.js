@@ -5,7 +5,7 @@ const app = angular.module("disney", []);
 app.controller('mainController', ['$http', function($http){
 
   const controller = this;
-  this.url = 'https://disneyland-decoded-api.herokuapp.com'
+  this.url = 'http://localhost:3000' || 'https://disneyland-decoded-api.herokuapp.com'
 
 
   //user info
@@ -51,24 +51,11 @@ app.controller('mainController', ['$http', function($http){
     })
   }
 
-  //  User Authentication  //
-  this.login = function(userPass){
-    console.log(userPass);
-    this.userPass = userPass;
-    $http({
-      method: 'post',
-      url: this.url + '/users/login',
-      data: {user: {username: userPass.username, password: userPass.password}},
-    }).then(function(res){
-      controller.user = res.data.user;
-      controller.loggedin = true;
-      localStorage.setItem('token', JSON.stringify(res.data.token));
-    }.bind(this));
-  }
+
 
 //can be any funciton for 'secret stuff'
 
-//Show Route
+//Index Route
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -78,6 +65,7 @@ app.controller('mainController', ['$http', function($http){
       }
     }).then(function(res){
       console.log(res);
+      console.log(res.data);
       if (res.data.status == 401){
         controller.error = "Cast Members Only";
       } else {
@@ -89,6 +77,16 @@ app.controller('mainController', ['$http', function($http){
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
+  }
+
+  //Show Route
+  this.getUser = function(){
+    $http({
+      url: this.url + '/users/' + this.user.id,
+      method: 'get'
+    }).then(function(res){
+      console.log('get user: ', res);
+    })
   }
 
   //Update Route
@@ -117,6 +115,26 @@ app.controller('mainController', ['$http', function($http){
     }.bind(this));
   }
 
+  //  User Authentication  //
+  this.login = function(userPass){
+    console.log(userPass);
+    this.userPass = userPass;
+    $http({
+      method: 'post',
+      url: this.url + '/users/login',
+      data: {user: {username: userPass.username, password: userPass.password}},
+    }).then(function(res){
+      this.user = res.data.user;
+      localStorage.setItem('token', JSON.stringify(res.data.token));
+      if (this.user === undefined){
+        this.loggedin = false;
+      } else {
+        this.loggedin = true;
+      }
+      console.log('The user is: ', this.user);
+      console.log('user logged in? ', this.loggedin);
+    }.bind(this));
+  }
 
   ////////////////////////////////////////////////
 
@@ -178,5 +196,67 @@ app.controller('mainController', ['$http', function($http){
   // this.getDining();
 
 
+
+  //////////////////////////////////////////
+
+  // CRUD for Posts //
+
+ // new route
+  this.createPost = function(){
+    $http({
+      url: this.url + "/users/" + this.user.id + "/posts",
+      method: 'post',
+      data: { post: { title: this.post.title, content: this.post.content}}
+    }).then(function(res){
+      console.log('create post: ', res);
+    })
+  }
+
+
+  // index route
+ this.getPosts = function(){
+   $http({
+     url: this.url + "/users/" + this.user.id + "/posts",
+     method: 'get'
+   }).then(function(res){
+     console.log('get posts', res);
+     controller.posts = res.data;
+   })
+ }
+
+ //show route
+
+ this.getPost = function(id){
+   $http({
+     url: this.url + "/users/" + this.user.id + "/posts/" + id,
+     method: 'get'
+   }).then(function(res){
+     console.log('get post: ', res);
+     controller.post = res.data;
+   })
+ }
+
+  // edit route
+  this.editPost = function(title, content, id){
+    $http({
+      method: 'put',
+      url: this.url + '/users/' + this.user.id + '/posts/' + id,
+      data: { post: { title: title, content: content, id: id} }
+    }).then(function(res){
+      console.log(res);
+      controller.editPost = res.data;
+
+    }.bind(this));
+  }
+
+  // delete route
+  this.deletePost = function(id){
+    $http({
+      method: 'delete',
+      url: this.url + '/users/' + this.user.id + '/posts/' + id
+    }).then(function(res){
+      console.log(res);
+    })
+  }
 
 }]); //end of mainController
