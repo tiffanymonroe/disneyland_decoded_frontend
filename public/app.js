@@ -226,9 +226,9 @@ app.controller('mainController', ['$http', function($http){
 
  //show route
 
- this.getPost = function(){
+ this.getPost = function(id){
    $http({
-     url: this.url + "/users/" + this.user.id + "/posts/" + this.posts.id,
+     url: this.url + "/users/" + this.user.id + "/posts/" + id,
      method: 'get'
    }).then(function(res){
      console.log('get post: ', res);

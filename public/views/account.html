@@ -22,7 +22,7 @@
         <div ng-repeat="post in ctrl.posts">
           <h5>{{post.title}}</h5>
           <p>{{post.content}}</p>
-          <div ng-click="ctrl.getPost()">CLICK ME</div>
+          <div ng-click="ctrl.getPost(post.id)">CLICK ME</div>
           <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
             Title: <input type="text" ng-model="post.title" placeholder="{{post.title}}">
             Tips, Tricks, and Advice for Visitors: <input type="textarea" ng-model="post.content" placeholder="{{post.content}}">
