@@ -69,9 +69,15 @@
         <section ng-include="'views/user_modal.html'"></section>
         <section ng-include="'views/account.html'"></section>
 
+
       </main>
 
     <footer>
+      <!-- users -->
+      <ul ng-click="ctrl.getUsers()">
+        Click for current users
+        <li ng-repeat="user in ctrl.users">{{user.username}}</li>
+      </ul>
     </footer>
 
 </div>
