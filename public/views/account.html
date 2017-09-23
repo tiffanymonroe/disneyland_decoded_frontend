@@ -3,31 +3,26 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h3 class="modal-title" id="myModalLabel">{{ctrl.userPass.username}}'s Account</h3>
       </div>
       <div class="modal-body">
-        <h4>{{ctrl.userPass.username}}'s Account</h4>
 
-        <form ng-submit="ctrl.updateUser(ctrl.updateUser.username, ctrl.updateUser.password)">
-          <input class="form-control" type="text" placeholder="Username" ng-model="ctrl.updateUser.username">
-          <input class="form-control" type="password" ng-model="ctrl.updateUser.password" placeholder="Password"/>
-          <button type="submit" class="btn btn-primary">Confirm</button>
+        <h4>Add some magic.</h4>
+        <form ng-submit="ctrl.createPost()">
+          Title: <input type="text" ng-model="ctrl.post.title">
+          Tips, Tricks, and Advice for Visitors: <input type="textarea" ng-model="ctrl.post.content">
+          <select name="select">
+            <option ng-model="ctrl.land.id" value="{{land.id}}" ng-repeat="land in ctrl.lands">{{land.name}}</option>
+          </select>
+          <input type="submit">
         </form>
 
-        <form ng-submit="ctrl.deleteUser(userPass)" accept-charset="UTF-8" action="/users/1" class="delete_user" id="delete_user_1" method="delete">
-          <input name="_method" type="hidden" value="destroy"/>
-          <button class="btn btn-default">Delete</button>
-        </form>
-
-        <h3>Add some magic.</h3>
-        <form>
-        </form>
-
-        <h3>All of your posts.</h3>
+        <h4>All of your posts.</h4>
+        <button ng-click="ctrl.getPosts()"  class="btn btn-default">Show</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ const app = angular.module("disney", []);
 app.controller('mainController', ['$http', function($http){
 
   const controller = this;
-  this.url = 'https://disneyland-decoded-api.herokuapp.com'
+  this.url = 'http://localhost:3000' || 'https://disneyland-decoded-api.herokuapp.com'
 
 
   //user info
@@ -51,24 +51,11 @@ app.controller('mainController', ['$http', function($http){
     })
   }
 
-  //  User Authentication  //
-  this.login = function(userPass){
-    console.log(userPass);
-    this.userPass = userPass;
-    $http({
-      method: 'post',
-      url: this.url + '/users/login',
-      data: {user: {username: userPass.username, password: userPass.password}},
-    }).then(function(res){
-      controller.user = res.data.user;
-      controller.loggedin = true;
-      localStorage.setItem('token', JSON.stringify(res.data.token));
-    }.bind(this));
-  }
+
 
 //can be any funciton for 'secret stuff'
 
-//Show Route
+//Index Route
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -89,6 +76,16 @@ app.controller('mainController', ['$http', function($http){
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
+  }
+
+  //Show Route
+  this.getUser = function(){
+    $http({
+      url: this.url + '/users/' + this.user.id,
+      method: 'get'
+    }).then(function(res){
+      console.log('get user: ', res);
+    })
   }
 
   //Update Route
@@ -117,6 +114,21 @@ app.controller('mainController', ['$http', function($http){
     }.bind(this));
   }
 
+  //  User Authentication  //
+  this.login = function(userPass){
+    console.log(userPass);
+    this.userPass = userPass;
+    $http({
+      method: 'post',
+      url: this.url + '/users/login',
+      data: {user: {username: userPass.username, password: userPass.password}},
+    }).then(function(res){
+      controller.user = res.data.user;
+      console.log('The user is: ', controller.user);
+      controller.loggedin = true;
+      localStorage.setItem('token', JSON.stringify(res.data.token));
+    }.bind(this));
+  }
 
   ////////////////////////////////////////////////
 
@@ -178,5 +190,34 @@ app.controller('mainController', ['$http', function($http){
   // this.getDining();
 
 
+
+  //////////////////////////////////////////
+
+  // CRUD for Posts //
+
+ // new route
+  this.createPost = function(){
+    $http({
+      url: this.url + "/users/" + this.user.id + "/posts",
+      method: 'post',
+      data: { post: { title: this.post.title, content: this.post.content, land_id: this.post.land_id, user_id: this.user.id}}
+    }).then(function(res){
+      console.log('create post: ', res);
+    })
+  }
+
+  // index route
+ this.getPosts = function(){
+   $http({
+     url: this.url + "/users/" + this.user.id + "/posts",
+     method: 'get'
+   }).then(function(res){
+     console.log('get posts', res);
+   })
+ }
+
+  // edit route
+
+  // delete route
 
 }]); //end of mainController
