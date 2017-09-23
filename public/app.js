@@ -212,6 +212,17 @@ app.controller('mainController', ['$http', function($http){
     })
   }
 
+  //show route
+
+  this.getPost = function(){
+    $http({
+      url: this.url + "/users/" + this.user.id + "/posts",
+      method: 'get'
+    }).then(function(res){
+      console.log('get post: ', res);
+    })
+  }
+
   // index route
  this.getPosts = function(){
    $http({
@@ -219,10 +230,22 @@ app.controller('mainController', ['$http', function($http){
      method: 'get'
    }).then(function(res){
      console.log('get posts', res);
+     controller.posts = res.data;
    })
  }
 
   // edit route
+  this.editPost = function(title, content, id){
+    $http({
+      method: 'patch',
+      url: this.url + '/users/' + this.user.id + '/posts/' + this.post.id,
+      data: { post: { title: title, content: content}}
+    }).then(function(res){
+      console.log(res);
+      controller.editPost = res.data;
+
+    }.bind(this));
+  }
 
   // delete route
 
