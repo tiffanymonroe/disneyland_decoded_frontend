@@ -19,6 +19,8 @@ app.controller('mainController', ['$http', function($http){
   this.account = false; //hides account page -- may not need if using Bootstrap modals
   this.updateUser = {}; //holds updated user info -- may not need if not making full CRUD
 
+  this.edit_delete = true;
+
   this.map = true; //shows park map
 
   this.land = {}; //holds current land
@@ -145,7 +147,7 @@ app.controller('mainController', ['$http', function($http){
     location.reload();
   }
 
-  
+
   ////////////////////////////////////////////////
 
 
@@ -244,6 +246,7 @@ app.controller('mainController', ['$http', function($http){
    }).then(function(res){
      console.log('get post: ', res);
      controller.post = res.data;
+     controller.edit_delete = false;
    })
  }
 
