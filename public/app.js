@@ -19,7 +19,6 @@ app.controller('mainController', ['$http', function($http){
   this.account = false; //hides account page -- may not need if using Bootstrap modals
   this.updateUser = {}; //holds updated user info -- may not need if not making full CRUD
 
-  this.edit_delete = true;
 
   this.map = true; //shows park map
 
@@ -215,11 +214,11 @@ app.controller('mainController', ['$http', function($http){
   // CRUD for Posts //
 
  // new route
-  this.createPost = function(id){
+  this.createPost = function(){
     $http({
       url: this.url + "/users/" + this.user.id + "/posts",
       method: 'post',
-      data: { post: { title: this.post.title, content: this.post.content, land_id: id}}
+      data: { post: { title: this.post.title, content: this.post.content}}
     }).then(function(res){
       console.log('create post: ', res);
     })
@@ -246,7 +245,6 @@ app.controller('mainController', ['$http', function($http){
    }).then(function(res){
      console.log('get post: ', res);
      controller.post = res.data;
-     controller.edit_delete = false;
    })
  }
 
