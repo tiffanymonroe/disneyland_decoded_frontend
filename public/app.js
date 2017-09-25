@@ -215,11 +215,11 @@ app.controller('mainController', ['$http', function($http){
   // CRUD for Posts //
 
  // new route
-  this.createPost = function(){
+  this.createPost = function(id){
     $http({
       url: this.url + "/users/" + this.user.id + "/posts",
       method: 'post',
-      data: { post: { title: this.post.title, content: this.post.content}}
+      data: { post: { title: this.post.title, content: this.post.content, land_id: id}}
     }).then(function(res){
       console.log('create post: ', res);
     })

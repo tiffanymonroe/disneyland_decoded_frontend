@@ -15,8 +15,11 @@ nav > .navbar, .navar-default, .navbar-static-top {
   background-color: #EBF6FC;
 }
 
-a {
-  color: #0060E8;
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+  
+
 }
 
 .map {
@@ -29,7 +32,6 @@ a {
   height: auto;
   padding-right: 10px;
 }
-
 
 
 

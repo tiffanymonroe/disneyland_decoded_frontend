@@ -37,8 +37,11 @@
       <a class="navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
     </span>
 
-    </nav>
+  </nav>
 
+
+
+    <hr class="style-six">
     <img ng-show="ctrl.map" class="map img-responsive" src="/assets/disneyland_map.jpg"/>
 
 
@@ -58,7 +61,7 @@
         <!-- logged in info -->
         <div class="user" ng-if="ctrl.loggedin">
           <h5>Welcome, {{ctrl.userPass.username}}!<br>
-            <section>
+            <section class="user-icons">
             <span class="glyphicon glyphicon-user" data-toggle="modal" data-target=".account"></span>
             <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
             </section>
