@@ -11,6 +11,17 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+nav > .navbar, .navar-default, .navbar-static-top {
+  background-color: #EBF6FC;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+  
+
+}
+
 .map {
   z-index: -1;
   position: absolute;
@@ -21,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
   padding-right: 10px;
 }
-
 
 
 

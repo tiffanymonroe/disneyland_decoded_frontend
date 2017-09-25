@@ -9,21 +9,24 @@ app.controller('mainController', ['$http', function($http){
 
 
   //user info
-  this.user = {};
-  this.users = {};
-  this.userPass = {};
-  this.token = {};
-  this.loginModal = false;
-  this.registerModal = false;
-  this.loggedin = false;
-  this.account = false;
-  this.updateUser = {};
-
-  this.map = true;
-
-  this.land = {};
+  this.user = {}; //holds user info
+  this.users = {}; //holds all user info
+  this.userPass = {};  //holds userPass info
+  this.token = {}; //holds token
+  this.loginModal = false; //hides login modal
+  this.registerModal = false; //hides register modal
+  this.loggedin = false; // tracks user's logged in status
+  this.account = false; //hides account page -- may not need if using Bootstrap modals
+  this.updateUser = {}; //holds updated user info -- may not need if not making full CRUD
 
 
+  this.map = true; //shows park map
+
+  this.land = {}; //holds current land
+
+  //////////////////////////////////////////
+
+// Toggle between login and register modals
 
   this.toggleLogin = function(){
     controller.loginModal = !controller.loginModal;
@@ -39,6 +42,11 @@ app.controller('mainController', ['$http', function($http){
     }
   }
 
+
+  //////////////////////////////////////////////
+
+  //User
+
   //New Route
   this.createUser = function(userPass){
     $http({
@@ -50,8 +58,6 @@ app.controller('mainController', ['$http', function($http){
       controller.user = res.data.user;
     })
   }
-
-
 
 //can be any funciton for 'secret stuff'
 
@@ -74,10 +80,6 @@ app.controller('mainController', ['$http', function($http){
     }.bind(this));
   }
 
-  this.logout = function(){
-    localStorage.clear('token');
-    location.reload();
-  }
 
   //Show Route
   this.getUser = function(){
@@ -115,6 +117,9 @@ app.controller('mainController', ['$http', function($http){
     }.bind(this));
   }
 
+
+  ///////////////////////////////////////////
+
   //  User Authentication  //
   this.login = function(userPass){
     console.log(userPass);
@@ -136,7 +141,16 @@ app.controller('mainController', ['$http', function($http){
     }.bind(this));
   }
 
+  this.logout = function(){
+    localStorage.clear('token');
+    location.reload();
+  }
+
+
   ////////////////////////////////////////////////
+
+
+  // Park Data
 
   this.getLands = function(){
     $http({
@@ -189,11 +203,9 @@ app.controller('mainController', ['$http', function($http){
   }
 
 
-  //functions to run on page load
-  this.getLands();
-  // this.getLand();
-  // this.getAttractions();
-  // this.getDining();
+
+  this.getLands(); //function to run on page load
+
 
 
 
@@ -257,6 +269,7 @@ app.controller('mainController', ['$http', function($http){
     }).then(function(res){
       console.log(res);
     })
+    this.getPosts();
   }
 
 }]); //end of mainController
