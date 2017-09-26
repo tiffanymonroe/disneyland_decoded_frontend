@@ -20,10 +20,10 @@
           <p>{{post.content}}</p>
 
 
-          <div ng-click="ctrl.getPost(post.id)">CLICK ME</div>
           <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
             Title: <input type="text" ng-model="post.title" placeholder="{{post.title}}">
             Memory: <input type="textarea" ng-model="post.content" placeholder="{{post.content}}">
+
             <input type="submit" value="Edit">
           </form>
           <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger">Delete</button>

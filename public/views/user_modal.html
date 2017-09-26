@@ -15,6 +15,9 @@
           <br>
           <input type="submit" class="btn btn-info"/>
         </form>
+        <div class="modal-footer">
+            <img data-dismiss="modal" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+        </div>
       </div>
 
       <div ng-show="ctrl.registerModal">
@@ -23,8 +26,11 @@
           Username: <input type="text" class="form-control" ng-model="userPass.username"/>
           Password: <input type="password" class="form-control" ng-model="userPass.password"/>
           <br>
-          <input type="submit"  class="btn btn-info"/>
+          <input type="submit"  ng-click="ctrl.login(userPass)" class="btn btn-info"/>
         </form>
+        <div class="modal-footer">
+            <img data-dismiss="modal" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+        </div>
       </div>
 
       <!-- end modals -->

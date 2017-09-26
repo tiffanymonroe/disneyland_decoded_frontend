@@ -1,3 +1,7 @@
+/** {
+  border: 1px solid hotpink;
+}*/
+
 @font-face {
   font-family: 'Pontiac';
   src: url('assets/pontiac_regular.otf');
@@ -18,7 +22,7 @@ nav > .navbar, .navar-default, .navbar-static-top {
 a:hover {
   text-decoration: none;
   cursor: pointer;
-  
+
 
 }
 

@@ -33,30 +33,44 @@
   <nav class="navbar navbar-default navbar-static-top">
 
     <!-- Lands -->
-    <span class="nav-lands" ng-repeat="land in ctrl.lands">
+    <div class="nav-lands" ng-repeat="land in ctrl.lands">
       <a class="navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
-    </span>
+    </div>
 
   </nav>
 
 
 
-  
+
+
+
+
     <img ng-show="ctrl.map" class="map img-responsive" src="/assets/disneyland_map.jpg"/>
 
 
 
     <div class="container">
       <main>
-        <div class="user navbar-right">
+        <div class="row">
+
+        <div class="col-xs-4">
+          <!-- post page modal -->
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target=".post-page">POSTS</button>
+        </div>
+
+        <div class="col-xs-4">
+          <!-- to add space between menu button and login/register -->
+        </div>
+
+        <div class="col-xs-4">
         <!-- Login Button -->
 
-        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
+        <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</button>
 
 
         <!-- only show when logged in   -->
         <!-- Register Button  -->
-        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
+        <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</button>
 
         <!-- logged in info -->
         <div class="user" ng-if="ctrl.loggedin">
@@ -65,23 +79,20 @@
             <span class="glyphicon glyphicon-user" data-toggle="modal" data-target=".account"></span>
             <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
             </section>
-
+        </div>
         </div>
       </div>
       <!-- Lands -->
         <section ng-include="'views/modals.html'"></section>
         <section ng-include="'views/user_modal.html'"></section>
         <section ng-include="'views/account.html'"></section>
+        <section id="post" ng-include="'views/post.html'"></section>
 
 
       </main>
 
     <footer>
-      <!-- users -->
-      <ul ng-click="ctrl.getUsers()">
-        Click for current users
-        <li ng-repeat="user in ctrl.users">{{user.username}}</li>
-      </ul>
+
     </footer>
 
 </div>
