@@ -7,11 +7,11 @@
         {{land.name}} </h3>
       </div>
       <div class="modal-body">
-        <ul><img ng-click="ctrl.getAttractions(land.id)" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/><h4>Attractions</h4>
+        <ul><h4><img ng-click="ctrl.getAttractions(land.id)" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>Attractions</h4>
           <li ng-repeat="attractions in ctrl.attractions"> {{attractions.name}}</li>
           <h1>{{land.attractions}}</h1>
         </ul>
-        <ul><img ng-click="ctrl.getDining(land.id)" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/><h4>Disney Dining</h4>
+        <ul><h4><img ng-click="ctrl.getDining(land.id)" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>Disney Dining</h4>
           <li ng-repeat="dining in ctrl.dining">{{dining.name}}</li>
         </ul>
       </div>

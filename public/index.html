@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Disneyland Decoded</title>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
   <!-- bootsrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -33,55 +37,66 @@
   <nav class="navbar navbar-default navbar-static-top">
 
     <!-- Lands -->
-    <span class="nav-lands" ng-repeat="land in ctrl.lands">
-      <a class="navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
-    </span>
+    <div class="lands-container" ng-repeat="land in ctrl.lands">
+      <a class="navbar-default navbar-text" data-toggle="modal" data-target="#{{land.id}}Modal">{{land.name}}</a>
+    </div>
 
   </nav>
 
 
 
-  
+
+
+
+
     <img ng-show="ctrl.map" class="map img-responsive" src="/assets/disneyland_map.jpg"/>
 
 
 
     <div class="container">
       <main>
-        <div class="user navbar-right">
+        <div class="row">
+
+        <div class="col-xs-4">
+          <!-- post page modal -->
+          <img class="post mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey" data-toggle="modal" data-target=".post-page"/>
+        </div>
+
+        <div class="col-xs-4">
+          <!-- to add space between menu button and login/register -->
+        </div>
+
+        <div class="col-xs-4" id="user-info">
         <!-- Login Button -->
 
-        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</a>
+        <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="ctrl.toggleLogin()" ng-if="!ctrl.loggedin">Log In</button>
 
 
         <!-- only show when logged in   -->
         <!-- Register Button  -->
-        <a data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</a>
+        <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm" ng-if="!ctrl.loggedin"  ng-click="ctrl.toggleRegister()">Register</button>
 
         <!-- logged in info -->
         <div class="user" ng-if="ctrl.loggedin">
-          <h5>Welcome, {{ctrl.userPass.username}}!<br>
-            <section class="user-icons">
-            <span class="glyphicon glyphicon-user" data-toggle="modal" data-target=".account"></span>
-            <span ng-click="ctrl.logout()" class="glyphicon glyphicon-log-out"><h5>
-            </section>
+          <h5>Welcome, {{ctrl.userPass.username}}!</h5>
+          <span class="glyphicon glyphicon-user" data-toggle="modal" data-target=".account"></span>
+          <span class="glyphicon glyphicon-log-out" ng-click="ctrl.logout()"></span>
+        </div>
 
         </div>
+
       </div>
       <!-- Lands -->
         <section ng-include="'views/modals.html'"></section>
         <section ng-include="'views/user_modal.html'"></section>
         <section ng-include="'views/account.html'"></section>
+        <section ng-include="'views/post.html'"></section>
 
 
       </main>
 
     <footer>
-      <!-- users -->
-      <ul ng-click="ctrl.getUsers()">
-        Click for current users
-        <li ng-repeat="user in ctrl.users">{{user.username}}</li>
-      </ul>
+
     </footer>
 
 </div>

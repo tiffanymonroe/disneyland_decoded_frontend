@@ -23,6 +23,8 @@ app.controller('mainController', ['$http', function($http){
   this.map = true; //shows park map
 
   this.land = {}; //holds current land
+  this.allPosts = [], //holds all posts
+  this.postPage = true; //hides post page
 
   //////////////////////////////////////////
 
@@ -218,14 +220,26 @@ app.controller('mainController', ['$http', function($http){
     $http({
       url: this.url + "/users/" + this.user.id + "/posts",
       method: 'post',
-      data: { post: { title: this.post.title, content: this.post.content}}
+      data: { post: { title: this.post.title, content: this.post.content, land_id: this.post.land_id}}
     }).then(function(res){
       console.log('create post: ', res);
+      controller.post = res.data;
+      controller.allPosts.push(controller.post);
     })
   }
 
 
   // index route
+  this.getAllPosts = function(){
+    $http({
+      url: this.url + "/posts",
+      method: 'get'
+    }).then(function(res){
+      console.log('get posts', res);
+      controller.allPosts = res.data;
+    })
+  }
+
  this.getPosts = function(){
    $http({
      url: this.url + "/users/" + this.user.id + "/posts",
@@ -272,4 +286,10 @@ app.controller('mainController', ['$http', function($http){
     this.getPosts();
   }
 
+  this.togglePost = function(){
+    controller.map = !controller.map;
+    controller.postPage = !controller.postPage;
+  }
+
+  this.getAllPosts();
 }]); //end of mainController

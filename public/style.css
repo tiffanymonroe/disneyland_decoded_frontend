@@ -1,26 +1,50 @@
+/** {
+  border: 1px solid hotpink;
+}*/
+
 @font-face {
   font-family: 'Pontiac';
   src: url('assets/pontiac_regular.otf');
 }
 
+
 body {
-  font-family: 'Pontiac', Fallback, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
 
 }
 
-nav > .navbar, .navar-default, .navbar-static-top {
-  background-color: #EBF6FC;
+
+.navbar-default.navbar-text {
+  color: black;
+  box-shadow: none;
+  margin-left: 2.25%;
+  font-size: 1.13vw;
+
+  -webkit-transition:all 0.3s linear;
+  -moz-transition:all 0.3s linear;
+  -ms-transition:all 0.3s linear;
+  -o-transition:all 0.3s linear;
+  transition:all 0.3s linear;
+}
+
+
+.navbar-default.navbar-text:hover {
+  color: #DAAA3A;
+  -webkit-transform:translate(7px);
+  -moz-transform:translateY(7px);
+  -ms-transform:translateY(7px);
+  -o-transform:translateY(7px);
+  transform:translateY(7px);
 }
 
 a:hover {
   text-decoration: none;
   cursor: pointer;
-  
-
 }
+
 
 .map {
   z-index: -1;
@@ -33,7 +57,9 @@ a:hover {
   padding-right: 10px;
 }
 
-
+#user-info {
+  text-align: right;
+}
 
 .user-modal {
   width: 90%;
@@ -48,4 +74,29 @@ a:hover {
 
 li {
   list-style: none;
+}
+
+.text {
+  height: 20%;
+}
+
+/* adapted from:
+http://jeremycookson.com/top-10-css-hover-effects/*/
+
+.post.mickey-icon {
+  width: 60px;
+  height: auto;
+  -webkit-transition:all 0.3s linear;
+  -moz-transition:all 0.3s linear;
+  -ms-transition:all 0.3s linear;
+  -o-transition:all 0.3s linear;
+  transition:all 0.3s linear;
+}
+
+.post.mickey-icon:hover {
+  -webkit-transform:rotate(360deg);
+  -moz-transform:rotate(360deg);
+  -ms-transform:rotate(360deg);
+  -o-transform:rotate(360deg);
+  transform:rotate(360deg);
 }
