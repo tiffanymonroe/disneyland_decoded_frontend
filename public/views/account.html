@@ -6,30 +6,40 @@
         <h3 class="modal-title" id="myModalLabel">{{ctrl.userPass.username}}'s Account</h3>
       </div>
       <div class="modal-body">
-        <h4>Magic memories.</h4>
-        <form ng-submit="ctrl.createPost(land.id)">
-          Title: <input type="text" ng-model="ctrl.post.title">
-          Memory: <input type="textarea" ng-model="ctrl.post.content">
-          <input type="submit">
-        </form>
 
-        <h4>All of your memories.</h4>
-        <button ng-click="ctrl.getPosts()"  class="btn btn-info">Show</button>
-        <div ng-repeat="post in ctrl.posts">
-          <h5>Title: {{post.title}}</h5>
-          <p>{{post.content}}</p>
-
-
-          <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
-            Title: <input type="text" ng-model="post.title" placeholder="{{post.title}}">
-            Memory: <input type="textarea" ng-model="post.content" placeholder="{{post.content}}">
-
-            <input type="submit" value="Edit">
-          </form>
-          <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger">Delete</button>
+            <h4>Magic memories.</h4>
+            <form ng-submit="ctrl.createPost(land.id)">
+              <h5>Title: </h5>
+              <input type="text" ng-model="ctrl.post.title">
+              <br>
+              <h5>Memory: </h5>
+              <input class="text" type="textarea" ng-model="ctrl.post.content">
+              <br>
+              <input class="btn btn-info" type="submit">
+            </form>
+            <br>
 
 
-        </div>
+          <h4>All of your memories.</h4>
+          <img ng-click="ctrl.getPosts()" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+          <div ng-repeat="post in ctrl.posts">
+            <h5>Title: {{post.title}}</h5>
+            <p class="text">{{post.content}}</p>
+            <br>
+            <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
+              <h5>Title: </h5>
+              <input type="text" ng-model="post.title" placeholder="{{post.title}}">
+              <h5>Memory: </h5>
+              <input class="text" type="textarea" ng-model="post.content" placeholder="{{post.content}}">
+              <br><br>
+              <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok"></span></button>
+            </form>
+
+            <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+          </div>
+
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
