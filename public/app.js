@@ -226,7 +226,6 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
     }).then(function(res){
       console.log('create post: ', res);
       controller.post = res.data;
-      controller.allPosts.push(controller.post);
     })
   }
 
@@ -249,9 +248,6 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
    }).then(function(res){
      console.log('get posts', res);
      controller.posts = res.data;
-     if(controller.posts.user_id === controller.user.id){
-       return controller.posts
-     }
    })
  }
 
@@ -290,6 +286,5 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
     })
     this.getPosts();
   }
-
 
 }]); //end of mainController
