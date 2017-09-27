@@ -2,10 +2,10 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="row">
-        <div class="col-xs-6 col-xs-offset-3"ng-repeat="posts in ctrl.allPosts">
+        <div class="col-xs-6 col-xs-offset-3" ng-repeat="posts in ctrl.allPosts">
           <h4>{{posts.title}}</h4>
           <p>{{posts.content}}</p>
-          
+          <p>{{posts.user_id}}</p>
         </div>
       </div>
     </div>

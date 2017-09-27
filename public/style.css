@@ -80,6 +80,10 @@ li {
   height: 20%;
 }
 
+#edit, #delete {
+  display: inline-block;
+}
+
 /* adapted from:
 http://jeremycookson.com/top-10-css-hover-effects/*/
 

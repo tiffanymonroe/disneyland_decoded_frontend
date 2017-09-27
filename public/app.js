@@ -2,10 +2,10 @@ console.log('Welcome to The Happiest Place on Earth');
 
 const app = angular.module("disney", []);
 
-app.controller('mainController', ['$http', function($http){
+app.controller('mainController', ['$http', '$scope', function($http, $scope){
 
   const controller = this;
-  this.url = 'https://disneyland-decoded-api.herokuapp.com'
+  this.url = 'http://localhost:3000' || 'https://disneyland-decoded-api.herokuapp.com'
 
 
   //user info
@@ -23,8 +23,9 @@ app.controller('mainController', ['$http', function($http){
   this.map = true; //shows park map
 
   this.land = {}; //holds current land
-  this.allPosts = [], //holds all posts
-  this.postPage = true; //hides post page
+
+
+  this.allPosts = []; //holds all posts
 
   //////////////////////////////////////////
 
@@ -286,9 +287,8 @@ app.controller('mainController', ['$http', function($http){
     this.getPosts();
   }
 
-  this.togglePost = function(){
-    controller.map = !controller.map;
-    controller.postPage = !controller.postPage;
+  this.resetForm = function() {
+    controller.form = '';
   }
 
   this.getAllPosts();
