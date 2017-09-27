@@ -77,7 +77,7 @@ li {
 }
 
 .text {
-  height: 20%;
+  height: 200px;
 }
 
 #edit, #delete {
@@ -125,6 +125,6 @@ http://jeremycookson.com/top-10-css-hover-effects/*/
   transform:translateY(-7px);
 }
 
-.edit {
-  padding-top: 7%;
+.edit, .create, #show {
+  padding-top: 30px;
 }
