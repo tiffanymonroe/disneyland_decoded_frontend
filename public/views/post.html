@@ -1,11 +1,16 @@
 <div class="modal fade post-page" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <h2>Disneyland Decoded</h2>
+        <h5>Share the magic.</h5>
+        <img class="post mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+      </div>
       <div class="row">
         <div class="col-xs-6 col-xs-offset-3" ng-repeat="posts in ctrl.allPosts">
           <h4>{{posts.title}}</h4>
           <p>{{posts.content}}</p>
-          <p>{{posts.user_id}}</p>
+          <br>
         </div>
       </div>
     </div>

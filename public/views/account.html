@@ -24,19 +24,16 @@
         <div class="tab-content">
           <!-- Tab 1 -->
           <div class="tab-pane fade in show active" id="account" role="tabpanel">
-            <h4>All of your memories.</h4>
+            <h4>Magic memories.</h4>
 
             <div ng-repeat="post in ctrl.posts">
               <h5>Title: {{post.title}}</h5>
               <p class="text">{{post.content}}</p>
-              <br>
             </div>
           </div>
           <!-- Tab 2 -->
           <div class="tab-pane fade" id="create" role="tabpanel">
-
-
-            <h4>Magic memories.</h4>
+            <h4>Share your memories.</h4>
             <form ng-submit="ctrl.createPost(land.id)">
               <h5>Title: </h5>
               <input type="text" ng-model="ctrl.post.title">
@@ -48,16 +45,12 @@
               <select>
                 <option ng-repeat="land in ctrl.lands" value="{{land.id}}" >{{land.name}}</option>
               </select>
-              <br>
               <input class="btn btn-info" type="submit">
             </form>
-            <br>
           </div>
 
           <!-- Tab 3 -->
-          <div class="tab-pane fade" id="edit" role="tabpanel">
-
-
+          <div ng-repeat="post in ctrl.posts" class="tab-pane fade" id="edit" role="tabpanel">
             <form ng-submit="ctrl.editPost(post.title, post.content, post.id)">
               <h5>Title: </h5>
               <input type="text" ng-model="post.title" placeholder="{{post.title}}">
@@ -66,7 +59,6 @@
               <br><br>
               <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok"></span></button>
             </form>
-
             <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
           </div>
 
