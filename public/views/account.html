@@ -2,7 +2,6 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel">{{ctrl.userPass.username}}'s Account</h3>
         <img class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
       </div>
@@ -14,10 +13,7 @@
             <a class="nav-link-active" href="#account" data-toggle="tab" role="tab">Memories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#create" data-toggle="tab" role="tab">Create memories.</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#edit" data-toggle="tab" role="tab">Edit memories.</a>
+            <a class="nav-link" href="#create" data-toggle="tab" role="tab" ng-click="ctrl.getPosts">Create memories.</a>
           </li>
         </ul>
 
@@ -31,7 +27,7 @@
               <p class="text">{{post.content}}</p>
             </div>
           </div>
-          <!-- Tab 2 -->
+
           <div class="tab-pane fade" id="create" role="tabpanel">
             <h4>Share your memories.</h4>
             <form ng-submit="ctrl.createPost(land.id)">
@@ -47,21 +43,20 @@
               </select>
               <input class="btn btn-info" type="submit">
             </form>
-          </div>
 
-          <!-- Tab 3 -->
-          <div class="tab-pane fade" id="edit" role="tabpanel">
-            <form ng-repeat="post in ctrl.posts" ng-submit="ctrl.editPost(post.title, post.content, post.id)">
+            <img class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>
+
+            <form class="edit" ng-repeat="post in ctrl.posts"  ng-submit="ctrl.editPost(post.title, post.content, post.id)">
               <h5>Title: </h5>
               <input type="text" ng-model="post.title" placeholder="{{post.title}}">
               <h5>Memory: </h5>
               <input class="text" type="textarea" ng-model="post.content" placeholder="{{post.content}}">
               <br><br>
-              <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok"></span></button>
+              <button type="submit" class="btn btn-warning">Edit</button>
+              <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
             </form>
-            <button type="button" ng-click="ctrl.deletePost(post.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-          </div>
 
+          </div>
         </div>   <!--  end tab content -->
 
       </div>

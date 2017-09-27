@@ -26,7 +26,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
 
 
   this.allPosts = []; //holds all posts
-
+  this.edit = true; //hides edit tab
   //////////////////////////////////////////
 
 // Toggle between login and register modals

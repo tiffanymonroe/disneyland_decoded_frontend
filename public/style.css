@@ -124,3 +124,7 @@ http://jeremycookson.com/top-10-css-hover-effects/*/
   -o-transform:translateY(-7px);
   transform:translateY(-7px);
 }
+
+.edit {
+  padding-top: 7%;
+}
