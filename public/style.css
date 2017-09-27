@@ -104,3 +104,23 @@ http://jeremycookson.com/top-10-css-hover-effects/*/
   -o-transform:rotate(360deg);
   transform:rotate(360deg);
 }
+
+.glyphicon.glyphicon-user, .glyphicon.glyphicon-log-out {
+  font-size: 20px;
+  padding: 10px;
+
+  -webkit-transition:all 0.3s linear;
+  -moz-transition:all 0.3s linear;
+  -ms-transition:all 0.3s linear;
+  -o-transition:all 0.3s linear;
+  transition:all 0.3s linear;
+}
+
+.glyphicon.glyphicon-user:hover, .glyphicon.glyphicon-log-out:hover {
+  color: #DAAA3A;
+  -webkit-transform:translateY(-7px);
+  -moz-transform:translateY(-7px);
+  -ms-transform:translateY(-7px);
+  -o-transform:translateY(-7px);
+  transform:translateY(-7px);
+}
