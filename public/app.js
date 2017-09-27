@@ -249,6 +249,9 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
    }).then(function(res){
      console.log('get posts', res);
      controller.posts = res.data;
+     if(controller.posts.user_id === controller.user.id){
+       return controller.posts
+     }
    })
  }
 
@@ -288,5 +291,5 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
     this.getPosts();
   }
 
-  this.getAllPosts();
+
 }]); //end of mainController
