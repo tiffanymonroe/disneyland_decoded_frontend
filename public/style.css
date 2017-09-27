@@ -2,18 +2,8 @@
   border: 1px solid hotpink;
 }*/
 
-@font-face {
-  font-family: 'Pontiac';
-  src: url('assets/pontiac_regular.otf');
-}
-
-
 body {
   font-family: 'Montserrat', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-
 }
 
 
@@ -126,5 +116,5 @@ http://jeremycookson.com/top-10-css-hover-effects/*/
 }
 
 .edit, .create, #show {
-  padding-top: 30px;
+  padding-top: 20px;
 }
