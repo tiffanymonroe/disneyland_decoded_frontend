@@ -236,7 +236,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
       url: this.url + "/posts",
       method: 'get'
     }).then(function(res){
-      console.log('get posts', res);
+      console.log('get all posts: ', res);
       controller.allPosts = res.data;
     })
   }
@@ -285,10 +285,6 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
       console.log(res);
     })
     this.getPosts();
-  }
-
-  this.resetForm = function() {
-    controller.form = '';
   }
 
   this.getAllPosts();
