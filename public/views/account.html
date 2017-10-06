@@ -35,7 +35,7 @@
             <div class="row">
               <div class="col-xs-6 col-xs-offset-3">
                 <h4>Share your memories.</h4>
-                <form class="create" ng-submit="ctrl.createPost(land.id)">
+                <form class="create" ng-submit="ctrl.createPost()">
                   <h5>Title: </h5>
                   <input type="text" ng-model="ctrl.post.title">
                   <br>
@@ -44,8 +44,8 @@
                   <input type="textarea" ng-model="ctrl.post.content">
 
                   <!-- does not work -->
-                  <select style="display: none;">
-                    <option ng-repeat="land in ctrl.lands" value="{{land.id}}" >{{land.name}}</option>
+                  <select ng-model="ctrl.post.land_id">
+                    <option ng-repeat="land in ctrl.lands" value="{{land.id}}">{{land.name}}</option>
                   </select>
                   <br>
                   <input style="margin: 7%;"class="btn btn-info" type="submit">

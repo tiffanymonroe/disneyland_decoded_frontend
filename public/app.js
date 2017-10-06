@@ -5,7 +5,7 @@ const app = angular.module("disney", []);
 app.controller('mainController', ['$http', '$scope', function($http, $scope){
 
   const controller = this;
-  this.url = 'https://disneyland-decoded-api.herokuapp.com'
+  this.url = 'http://localhost:3000'
 
 
   //user info
