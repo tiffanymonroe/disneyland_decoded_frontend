@@ -14,6 +14,9 @@
         <ul><h4><img ng-click="ctrl.getDining(land.id)" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>Disney Dining</h4>
           <li ng-repeat="dining in ctrl.dining">{{dining.name}}</li>
         </ul>
+        <ul><h4><img ng-click="ctrl.getAllPosts()" class="mickey-icon" src="/assets/Mickey_Mouse_head.png" alt="mickey"/>Tips</h4>
+          <li ng-repeat="posts in ctrl.allPosts">{{posts.title}}</li>
+        </ul>
       </div>
       <div class="modal-footer">
       </div>
