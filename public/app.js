@@ -63,7 +63,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
     })
   }
 
-//can be any funciton for 'secret stuff'
+//can be any function for 'secret stuff'
 
 //Index Route
   this.getUsers = function(){
