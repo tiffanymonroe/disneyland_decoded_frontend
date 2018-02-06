@@ -25,7 +25,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
   this.land = {}; //holds current land
 
 
-  this.allPosts = []; //holds all posts
+  this.allPostts = []; //holds all posts
   this.edit = true; //hides edit tab
   //////////////////////////////////////////
 
@@ -215,9 +215,9 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
 
   //////////////////////////////////////////
 
-  // CRUD for Posts //
+  // Posts
 
- // new route
+ // New Route
   this.createPost = function(){
     $http({
       url: this.url + "/users/" + this.user.id + "/posts",
@@ -230,7 +230,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
   }
 
 
-  // index route
+  // Index Route
   this.getAllPosts = function(){
     $http({
       url: this.url + "/posts",
@@ -251,7 +251,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
    })
  }
 
- //show route
+ //Show Route
 
  this.getPost = function(id){
    $http({
@@ -263,7 +263,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
    })
  }
 
-  // edit route
+  // Edit Route
   this.editPost = function(title, content, id){
     $http({
       method: 'put',
@@ -276,7 +276,7 @@ app.controller('mainController', ['$http', '$scope', function($http, $scope){
     }.bind(this));
   }
 
-  // delete route
+  // Delete Route
   this.deletePost = function(id){
     $http({
       method: 'delete',
